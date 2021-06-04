@@ -28,7 +28,7 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ secrets.STATE_TOKEN }}" \
             https://api.github.com/repos/prefapp/${{ env.state_repo }}/dispatches \
-            -d '{"event_type":"test-dispatch-event"
+            -d '{"event_type":"test-dispatch-event",
                  "client_payload": {
                    "environment": "${{ env.stage }}",
                    "service": "${{ env.service_name }}",
