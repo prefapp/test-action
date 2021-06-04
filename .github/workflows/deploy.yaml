@@ -4,6 +4,11 @@ on:
   release:
     types: [released]
 
+env:
+  stage: 'STAGE_ENVAR'
+  service_name: 'SERVICE_NAME_ENVAR'
+  state_repo: 'test-state'
+  
 jobs:
   show-actor:
     runs-on: ubuntu-latest
@@ -12,4 +17,19 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Print Github actor
-        run: echo $GITHUB_ACTOR
+        run: |
+          echo $GITHUB_ACTOR
+          echo ${{ github.actor }}
+          
+      - name: Dispatch release to state repo
+        run: |
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/octocat/${{ env.state_repo }}/dispatches \
+            -d '{"event_type":"test-dispatch-event"
+                 "client_payload": {
+                   "environment": "${{ env.stage }}",
+                   "service": "${{ env.service_name }}",
+                   "actor": "${{ github.actor }}",
+                   "image": "IMAGE_NAME" }}'
