@@ -1,0 +1,15 @@
+name: Test release
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  show-actor:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Print Github actor
+        run: echo {{ GITHUB_ACTOR }}
