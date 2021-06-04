@@ -26,5 +26,11 @@ jobs:
           curl \
             -X POST \
             -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/prefapp/test-state/dispatches \
-            -d '{"event_type":"test-dispatch-event"}'
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/octocat/${{ env.state_repo }}/dispatches \
+            -d '{"event_type":"test-dispatch-event"
+                 "client_payload": {
+                   "environment": "${{ env.stage }}",
+                   "service": "${{ env.service_name }}",
+                   "actor": "${{ github.actor }}",
+                   "image": "${{ steps.image_name.outputs.image_name }}" }}'
