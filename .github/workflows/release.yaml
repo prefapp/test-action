@@ -26,7 +26,6 @@ jobs:
           VERSION=${{ steps.poetry_ver.outputs.VERSION }}
           git config user.name  ${{ env.repo_git_user }}
           git config user.email ${{ env.repo_git_mail }}
-          git commit -m "[automated] Prepare release ${VERSION}"
           git tag ${VERSION}
           git push origin ${VERSION}
           
