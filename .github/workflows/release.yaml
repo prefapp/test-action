@@ -1,6 +1,9 @@
 name: Tag and release
 on:
   workflow_dispatch:
+env:
+  repo_git_user: 'github-actions'
+  repo_git_mail: 'github-actions@github.com'
   
 jobs:
   build:
@@ -18,19 +21,20 @@ jobs:
                 echo "::set-output name=VERSION::$VERSION"
                 echo $VERSION
                 
-      - name: Tag snapshot
-        uses: tvdias/github-tagger@v0.0.1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ steps.poetry_ver.outputs.VERSION }}
+      - name: Create Git Tag
+        run: |
+          VERSION=${{ steps.poetry_ver.outputs.VERSION }}
+          git config user.name  ${{ env.repo_git_user }}
+          git config user.email ${{ env.repo_git_mail }}
+          git commit -m "[automated] Prepare release ${VERSION}"
+          git tag ${VERSION}
+          git push origin ${VERSION}
           
-      - name: Create a GitHub release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Github Release
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ steps.poetry_ver.outputs.VERSION }}
-          release_name: ${{ steps.poetry_ver.outputs.VERSION }}
-          body: New prefapp-core release
+          name: ${{ steps.poetry_ver.outputs.VERSION }}
+          tag: ${{ steps.poetry_ver.outputs.VERSION }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       
