@@ -15,8 +15,9 @@ jobs:
       - name: Get poetry version
         id: poetry_ver
         run: |
-                VERSION=$(poetry version | cut -d ' ' -f 2 )
+                VERSION=$( poetry version | cut -d ' ' -f 2 )
                 echo "::set-output name=VERSION::$VERSION"
+                echo $VERSION
                 
       - name: Tag snapshot
         uses: tvdias/github-tagger@v0.0.1
