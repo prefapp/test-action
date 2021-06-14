@@ -1,0 +1,24 @@
+name: Bump version
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Get poetry version
+        id: poetry_ver
+        run: |
+                VERSION=$(poetry version | cut -d ' ' -f 2 )
+                echo "::set-output name=VERSION::$VERSION"
+                
+      - name:  Push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v5.5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: ${{ steps.vars.poetry_ver.VERSION }}
+      
