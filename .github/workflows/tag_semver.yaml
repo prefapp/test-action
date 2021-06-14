@@ -18,10 +18,10 @@ jobs:
                 VERSION=$(poetry version | cut -d ' ' -f 2 )
                 echo "::set-output name=VERSION::$VERSION"
                 
-      - name:  Push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v5.5
+      - name: Tag snapshot
+        uses: tvdias/github-tagger@v0.0.1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          custom_tag: ${{ steps.vars.poetry_ver.VERSION }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ steps.vars.poetry_ver.VERSION }}
+
       
