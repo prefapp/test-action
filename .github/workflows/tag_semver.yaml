@@ -23,6 +23,6 @@ jobs:
         uses: tvdias/github-tagger@v0.0.1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ steps.vars.poetry_ver.VERSION }}
+          tag: ${{ steps.poetry_ver.outputs.VERSION }}
 
       
