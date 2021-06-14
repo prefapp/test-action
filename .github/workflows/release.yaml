@@ -23,5 +23,14 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.poetry_ver.outputs.VERSION }}
+          
+      - name: Create a GitHub release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.poetry_ver.outputs.VERSION }}
+          release_name: ${{ steps.poetry_ver.outputs.VERSION }}
+          body: New prefapp-core release
 
       
