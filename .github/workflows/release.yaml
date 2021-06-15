@@ -5,6 +5,7 @@ on:
       release_commit:
         description: 'Commit of the release (optional)'     
         required: false
+        default: 'LATEST'
 
 env:
   repo_git_user: 'github-actions'
@@ -17,7 +18,11 @@ jobs:
       - name: Determine commit
         id: commit
         run: |
+          if [ "${{ github.event.inputs.release_commit }}" != "LATEST" ]; then
+          echo "::set-output name=COMMIT::${{ github.event.inputs.release_commit }}"
+          else
           echo "::set-output name=COMMIT::${{ env.GITHUB_SHA }}"
+          fi
       
       - uses: actions/checkout@v2
         with:
