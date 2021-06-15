@@ -2,10 +2,10 @@ name: Test
 on:
   workflow_dispatch:
     inputs:
-      name:
-        description: 'Name to greet'     
+      branch:
+        description: 'Source branch'     
         required: true
-        default: 'alberto'
+        default: ''
 
 env:
   repo_git_user: 'github-actions'
@@ -15,12 +15,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Greet some one
-        id: hello
-        uses: prefapp/actions/hello-world@main
+      - name: Get repo context
+        id: gh
+        uses: prefapp/actions/create-pr@main
         with:
-          who-to-greet: ${{ github.event.inputs.name }}
+          source_branch: ${{ github.event.inputs.branch }}
+          secret_token: ${{ secrets.GITHUB_TOKEN }}
 
       # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+      #- name: Get the output time
+      #  run: echo "The time was ${{ steps.hello.outputs.time }}"
