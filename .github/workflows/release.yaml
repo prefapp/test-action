@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       release_commit:
-        description: 'Commit of the release (optional)'     
+        description: 'FULL commit sha of the release (optional)'     
         required: false
         default: ''
 
