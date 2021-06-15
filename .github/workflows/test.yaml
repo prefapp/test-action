@@ -1,4 +1,4 @@
-name: Tag and release
+name: Test
 on:
   workflow_dispatch:
     inputs:
