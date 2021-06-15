@@ -5,7 +5,7 @@ on:
       release_commit:
         description: 'Commit of the release'     
         required: false
-        default: ${{ github.sha }}
+        default: $GITHUB_SHA
 env:
   repo_git_user: 'github-actions'
   repo_git_mail: 'github-actions@github.com'
