@@ -19,7 +19,7 @@ jobs:
         id: gh
         uses: prefapp/actions/create-pr@main
         with:
-          source_branch: ${{ github.event.inputs.branch }}
+          target_branch: ${{ github.event.inputs.branch }}
           secret_token: ${{ secrets.GITHUB_TOKEN }}
 
       # Use the output from the `hello` step
