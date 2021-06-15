@@ -1,0 +1,26 @@
+name: Tag and release
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Name to greet'     
+        required: true
+        default: 'alberto'
+
+env:
+  repo_git_user: 'github-actions'
+  repo_git_mail: 'github-actions@github.com'
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greet some one
+        id: hello
+      - uses: prefapp/actions/hello-world
+        with:
+          who-to-greet: ${{ github.event.inputs.name }}
+
+      # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
