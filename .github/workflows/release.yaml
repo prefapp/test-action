@@ -1,6 +1,11 @@
 name: Tag and release
 on:
   workflow_dispatch:
+    inputs:
+      release_commit:
+        description: 'Commit of the release'     
+        required: false
+        default: ${{ github.sha }}
 env:
   repo_git_user: 'github-actions'
   repo_git_mail: 'github-actions@github.com'
@@ -10,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.release_commit }}
       
       - name: Install Poetry
         uses: snok/install-poetry@v1.1.6
