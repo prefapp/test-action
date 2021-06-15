@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       release_commit:
-        description: 'Commit of the release'     
+        description: 'Commit of the release (optional)'     
         required: false
-        default: $GITHUB_SHA
+
 env:
   repo_git_user: 'github-actions'
   repo_git_mail: 'github-actions@github.com'
@@ -14,9 +14,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Determine commit
+        id: commit
+        run: |
+          echo "::set-output name=COMMIT::${{ env.GITHUB_SHA }}"
+      
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.inputs.release_commit }}
+          ref: ${{ steps.commit.outputs.COMMIT }}
       
       - name: Install Poetry
         uses: snok/install-poetry@v1.1.6
