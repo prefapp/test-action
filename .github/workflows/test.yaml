@@ -6,6 +6,10 @@ on:
         description: 'Source branch'     
         required: true
         default: ''
+      environment:
+        description: 'Environment'     
+        required: true
+        default: 'des'
 
 env:
   repo_git_user: 'github-actions'
@@ -24,7 +28,7 @@ jobs:
           target_branch: ${{ github.event.inputs.branch }}
           secret_token: ${{ secrets.GITHUB_TOKEN }}
           application: 'app1'
-          environment: 'des'
+          environment: ${{ github.event.inputs.environment }}
 
       # Use the output from the `hello` step
       #- name: Get the output time
