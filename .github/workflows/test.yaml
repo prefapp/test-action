@@ -15,7 +15,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Get repo context
+      - uses: actions/checkout@v2
+      
+      - name: test
+        run: ls
+        
+      - name: Create PR
         id: gh
         uses: prefapp/action-state-repo-generate-pr@feature/v1
         with:
