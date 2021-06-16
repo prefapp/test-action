@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Get repo context
         id: gh
-        uses: prefapp/action-state-repo-generate-pr@v0
+        uses: prefapp/action-state-repo-generate-pr@feature/v1
         with:
           target_branch: ${{ github.event.inputs.branch }}
           secret_token: ${{ secrets.GITHUB_TOKEN }}
