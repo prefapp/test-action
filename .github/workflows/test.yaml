@@ -10,6 +10,10 @@ on:
         description: 'Environment'     
         required: true
         default: 'des'
+      reviewers:
+        description: 'PR Reviewers'     
+        required: false
+        default: ''
 
 env:
   repo_git_user: 'github-actions'
@@ -29,6 +33,7 @@ jobs:
           secret_token: ${{ secrets.GITHUB_TOKEN }}
           application: 'app1'
           environment: ${{ github.event.inputs.environment }}
+          reviewers: ${{ github.event.inputs.reviewers }}
 
       # Use the output from the `hello` step
       #- name: Get the output time
