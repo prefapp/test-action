@@ -23,6 +23,8 @@ jobs:
         with:
           target_branch: ${{ github.event.inputs.branch }}
           secret_token: ${{ secrets.GITHUB_TOKEN }}
+          application: 'app1'
+          environment: 'des'
 
       # Use the output from the `hello` step
       #- name: Get the output time
