@@ -10,6 +10,6 @@ jobs:
       - name: Try to fail
         run: exit 1
         
-      - name: Try to fail
+      - name: Echo always
         if: ${{ always() }}
         run: echo "Always always runs hahaha"
