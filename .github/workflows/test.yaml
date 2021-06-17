@@ -2,14 +2,22 @@ name: Test
 on:
   workflow_dispatch:
     inputs:
-      branch:
-        description: 'Source branch'     
+      application:
+        description: 'Application'     
         required: true
         default: ''
       environment:
         description: 'Environment'     
         required: true
-        default: 'des'
+        default: ''
+      services:
+        description: 'Services'     
+        required: true
+        default: ''
+      image:
+        description: 'New image'     
+        required: true
+        default: ''
       reviewers:
         description: 'PR Reviewers'     
         required: false
@@ -27,12 +35,12 @@ jobs:
         
       - name: Create PR
         id: gh
-        uses: prefapp/action-state-repo-generate-pr@feature/v1
+        uses: prefapp/action-state-repo-update-image@feature/v2
         with:
-          target_branch: ${{ github.event.inputs.branch }}
-          secret_token: ${{ secrets.GITHUB_TOKEN }}
-          application: 'app1'
+          application: ${{ github.event.inputs.application }}
           environment: ${{ github.event.inputs.environment }}
+          services: ${{ github.event.inputs.services }}
+          image: ${{ github.event.inputs.image }}
           reviewers: ${{ github.event.inputs.reviewers }}
 
       # Use the output from the `hello` step
