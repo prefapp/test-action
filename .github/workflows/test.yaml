@@ -36,8 +36,6 @@ jobs:
       - name: Update image
         id: gh
         uses: prefapp/action-state-repo-update-image@feature/v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           application: ${{ github.event.inputs.application }}
           environment: ${{ github.event.inputs.environment }}
