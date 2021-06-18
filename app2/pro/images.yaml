@@ -1,4 +1,4 @@
 proxy:
-  image: foo/proxy:pro
+  image: foo/common:prp
 dns:
-  image: foo/dns:pro
+  image: foo/common:prp
