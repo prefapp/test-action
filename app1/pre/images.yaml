@@ -1,6 +1,6 @@
 app-server:
-  image: foo/common:pre
+  image: foo/common:bar
 app-client:
-  image: foo/client:pre
+  image: foo/common:bar
 app-api:
-  image: foo/common:pre
+  image: foo/common:bar
