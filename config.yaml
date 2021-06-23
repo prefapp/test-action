@@ -11,9 +11,10 @@ app1:
 
 app2:
   auto_merge:
-    des: true
+    dev: true
     pre: true
     pro: false
   services:
     - proxy
     - dns
+
