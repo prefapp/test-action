@@ -16,7 +16,7 @@ jobs:
         run: |
           URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
           PR_FILES=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X GET -G $URL | jq -r '.[] | .filename')
-          echi $PR_FILES
+          echo $PR_FILES
           for path in $PR_FILES; do
             if [[ $path = code/* || $path = .github/workflows/code* ]]; then
               echo "Changes in code folders detected: '$path'"
