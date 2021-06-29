@@ -1,5 +1,8 @@
 
 app1:
+  aks_resource_group: 'AksResourceGroup'
+  aks_cluster_name: 'AksClusterName'
+  login_server: 'LoginServer'
   auto_merge:
     des: true
     pre: true
