@@ -4,3 +4,4 @@ app-client:
   image: foo/client:pro
 app-api:
   image: foo/api:pro
+  
