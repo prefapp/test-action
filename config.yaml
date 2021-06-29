@@ -13,6 +13,9 @@ app1:
     - app-api
 
 app2:
+  aks_resource_group: 'AksResourceGroup'
+  aks_cluster_name: 'AksClusterName'
+  login_server: 'LoginServer'
   auto_merge:
     dev: true
     pre: true
