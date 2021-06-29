@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Check for code folder changes in PR branch
-        id: code-changes
+        id: code_changes
         run: |
           URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
           PR_FILES=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X GET -G $URL | jq -r '.[] | .filename')
@@ -28,6 +28,31 @@ jobs:
               echo "application/chart detected: '$APP'"
               echo "environment detected: '$ENV'"
               echo ::set-output name=detected::true
+              echo ::set-output name=app::$APP
+              echo ::set-output name=app::$ENV
               break
             fi
           done
+          
+      - name: Echo code_changes
+        run: |
+          echo "The application is ${{ steps.code_changes.outputs.APP }}"
+          echo "The environment is ${{ steps.code_changes.outputs.ENV }}"
+          
+      - name: Get YAML Values
+        uses: CumulusDS/get-yaml-paths-action@v0.1.0
+        id: yaml_values
+        with:
+          file: config.yaml
+          aks_resource_group: ${{ steps.code_changes.outputs.APP }}.aks_resource_group
+          aks_cluster_name: ${{ steps.code_changes.outputs.APP }}.aks_cluster_name
+          login_server: ${{ steps.code_changes.outputs.APP }}.login_server
+          
+      - name: Echo all values
+        run: |
+          echo "The application is ${{ steps.code_changes.outputs.APP }}"
+          echo "The environment is ${{ steps.code_changes.outputs.ENV }}"
+          echo "The aks_resource_group is ${{ steps.yaml_values.outputs.aks_resource_group }}"
+          echo "The aks_cluster_name is ${{ steps.yaml_values.outputs.aks_cluster_name }}"
+          echo "The login_server is ${{ steps.yaml_values.outputs.login_server }}"
+          
