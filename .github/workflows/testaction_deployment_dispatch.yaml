@@ -15,7 +15,7 @@ on:
         required: true
         default: ''
       deployment_file:
-        description: 'token'     
+        description: 'deployment_file'     
         required: false
         default: ''
 
