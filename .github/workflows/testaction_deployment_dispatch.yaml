@@ -14,6 +14,10 @@ on:
         description: 'token'     
         required: true
         default: ''
+      deployment_file:
+        description: 'token'     
+        required: false
+        default: ''
 
 
 env:
@@ -33,6 +37,7 @@ jobs:
           token: ${{ github.event.inputs.token }}
           image_repository: ${{ github.event.inputs.image_repository }}
           state_repo: ${{ github.event.inputs.state_repo }}
+          deployment_file:  ${{ github.event.inputs.deployment_file }}
 
 
       # Use the output from the `hello` step
