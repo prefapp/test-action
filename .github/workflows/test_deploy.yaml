@@ -1,0 +1,40 @@
+name: Test
+on:
+  workflow_dispatch:
+    inputs:
+      state_repo:
+        description: 'state_repo'     
+        required: true
+        default: ''
+      image_repository:
+        description: 'image_repository'     
+        required: true
+        default: ''
+      token:
+        description: 'token'     
+        required: true
+        default: ''
+
+
+env:
+  repo_git_user: 'github-actions'
+  repo_git_mail: 'github-actions@github.com'
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Update image
+        id: gh
+        uses: prefapp/action-deployment-dispatch@main
+        with:
+          token: ${{ github.event.inputs.token }}
+          image_repository: ${{ github.event.inputs.image_repository }}
+          state_repo: ${{ github.event.inputs.state_repo }}
+
+
+      # Use the output from the `hello` step
+      #- name: Get the output time
+      #  run: echo "The time was ${{ steps.hello.outputs.time }}"
