@@ -38,6 +38,7 @@ jobs:
           image_repository: ${{ github.event.inputs.image_repository }}
           state_repo: ${{ github.event.inputs.state_repo }}
           deployment_file:  ${{ github.event.inputs.deployment_file }}
+          pull_request: "36"
 
 
       # Use the output from the `hello` step
