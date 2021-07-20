@@ -1,0 +1,28 @@
+name: Test deployment_dispatch with a release
+
+on:
+  release:
+    types: [released]
+
+env:
+  state_repo: 'test-state'
+  
+jobs:
+  show-actor:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Print Github actor
+        run: |
+          echo $GITHUB_ACTOR
+          echo ${{ github.actor }}
+          
+      - name: Update image
+        id: gh
+        uses: prefapp/action-deployment-dispatch@main
+        with:
+          token: "input_token"
+          image_repository: "input_image_repository"
+          state_repo: "input_state_repo"
