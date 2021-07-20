@@ -2,7 +2,7 @@ name: Test deployment_dispatch with a release
 
 on:
   release:
-    types: [released]
+    types: [released, prereleased]
 
 env:
   state_repo: 'test-state'
