@@ -1,22 +1,29 @@
 tenant1:
   release_foo:
     dev:
-      service: hello, greetings
+      service_names: 
+        - hello
+        - greetings
       version: branch_main
     pre:
-      service: hello
+      service_names: 
+        - hello
       version: last_prerelease
     pro:
-      service: hello
+      service_names: 
+        - hello
       version: 1.1.1
 tenant2:
   release_bar:
     dev:
-      service: greetings
+      service_names: 
+        - greetings
       version: branch_branch2
     pre:
-      service: greetings
+      service_names: 
+        - greetings
       version: last_prerelease
     pro:
-      service: greetings
+      service_names: 
+        - greetings
       version: last_release
