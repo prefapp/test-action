@@ -25,4 +25,4 @@ jobs:
         with:
           token: ${{ secrets.STATE_TOKEN }}
           image_repository: "input_image_repository"
-          state_repo: "prefapp/test-state"
+          state_repo: "test-state"
