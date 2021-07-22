@@ -9,13 +9,14 @@ tenant1:
     pro:
       service: hello
       version: 1.1.1
+tenant2:
   release_bar:
     dev:
-      service: hi
+      service: greetings
       version: branch_dev
     pre:
-      service: hi
+      service: greetings
       version: last_prerelease
     pro:
-      service: hi
+      service: greetings
       version: last_release
