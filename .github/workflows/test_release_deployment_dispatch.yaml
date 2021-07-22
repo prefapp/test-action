@@ -23,6 +23,6 @@ jobs:
         id: gh
         uses: prefapp/action-deployment-dispatch@main
         with:
-          token: "input_token"
+          token: ${{ secrets.STATE_TOKEN }}
           image_repository: "input_image_repository"
-          state_repo: "input_state_repo"
+          state_repo: "prefapp/test-state"
