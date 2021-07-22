@@ -13,7 +13,7 @@ tenant2:
   release_bar:
     dev:
       service: greetings
-      version: branch_dev
+      version: branch_branch2
     pre:
       service: greetings
       version: last_prerelease
