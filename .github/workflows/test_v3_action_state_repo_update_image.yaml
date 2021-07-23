@@ -14,8 +14,8 @@ on:
         description: 'Environment'     
         required: true
         default: ''
-      services:
-        description: 'Services'     
+      service_names:
+        description: 'Service names'     
         required: true
         default: ''
       image:
@@ -44,7 +44,7 @@ jobs:
           tenant: ${{ github.event.inputs.tenant }}
           application: ${{ github.event.inputs.application }}
           environment: ${{ github.event.inputs.environment }}
-          services: ${{ github.event.inputs.services }}
+          services: ${{ github.event.inputs.service_names }}
           image: ${{ github.event.inputs.image }}
           reviewers: ${{ github.event.inputs.reviewers }}
 
