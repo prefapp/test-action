@@ -1,4 +1,4 @@
-name: Test
+name: test_v3_action_state_repo_update_image
 on:
   workflow_dispatch:
     inputs:
