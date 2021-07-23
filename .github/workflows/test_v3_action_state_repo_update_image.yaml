@@ -44,7 +44,7 @@ jobs:
           tenant: ${{ github.event.inputs.tenant }}
           application: ${{ github.event.inputs.application }}
           environment: ${{ github.event.inputs.environment }}
-          services: ${{ github.event.inputs.service_names }}
+          service_names: ${{ github.event.inputs.service_names }}
           image: ${{ github.event.inputs.image }}
           reviewers: ${{ github.event.inputs.reviewers }}
 
