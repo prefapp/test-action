@@ -15,8 +15,8 @@ on:
 
 jobs:
   calculate-matrix:
-  runs-on: ubuntu-latest
-    outputs:
+    runs-on: ubuntu-latest
+    outputs: 
       matrix: ${{ steps.calculate-matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v2
@@ -26,4 +26,4 @@ jobs:
         with:
           matrix_output: matrix
           
-      - run echo $matrix 
+      - run: echo $matrix 
