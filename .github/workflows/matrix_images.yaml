@@ -1,0 +1,29 @@
+name: test flavour images
+
+on:
+  workflow_dispatch:
+
+  release:
+    types: [prereleased, released]
+
+  push:
+    branches:
+      - main
+
+  pull_request:   
+    types: [labeled, synchronize]
+
+jobs:
+  calculate-matrix:
+  runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.calculate-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: calculate-matrix
+        uses: prefapp/action-flavour-images-matrix-generator@v1
+        with:
+          matrix_output: matrix
+          
+      - run echo $matrix 
