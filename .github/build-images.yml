@@ -1,0 +1,27 @@
+first-flavour:
+  triggers:  
+    push:  
+      branches: ["main"] 
+    prerelease:
+    release:
+  build_args:
+    STATIC_FOLDER: "angular"
+
+default:
+  triggers:  
+    push:  
+      branches: ["main"] 
+    prerelease:
+    release: 
+  build_args:
+    STATIC_FOLDER: "default"  
+
+third-flavour:
+  triggers:
+    push:  
+      branches: ["main"] 
+    prerelease:
+    release:
+  build_args:
+    STATIC_FOLDER: "vuejs" 
+ 
