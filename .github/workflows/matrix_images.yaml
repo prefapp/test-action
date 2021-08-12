@@ -26,4 +26,4 @@ jobs:
         with:
           matrix_output: matrix
           
-      - run: echo $matrix 
+      - run: ${{ steps.calculate-matrix.outputs.matrix }}"
