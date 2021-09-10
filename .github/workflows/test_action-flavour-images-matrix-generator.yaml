@@ -1,4 +1,4 @@
-name: test flavour images
+name: test action-flavour-images-matrix-generator
 
 on:
   workflow_dispatch:
@@ -23,10 +23,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         
-      - name: calculate-matrix
+      - name: calculate-matrix-v1
+        id: calculate-matrix-v1
         uses: prefapp/action-flavour-images-matrix-generator@v1
         with:
           matrix_output: matrix
           repository: ${{ env.repository }}
           
-      - run: echo ${{ steps.calculate-matrix.outputs.matrix }}
+      - run: echo ${{ steps.calculate-matrix-v1.outputs.matrix }}
+      
+      - name: calculate-matrix-test
+        id: calculate-matrix-test
+        uses: prefapp/action-flavour-images-matrix-generator@feature/build-images-json-schema
+        with:
+          matrix_output: matrix
+          repository: ${{ env.repository }}
+          
+      - run: echo ${{ steps.calculate-matrix-test.outputs.matrix }}
