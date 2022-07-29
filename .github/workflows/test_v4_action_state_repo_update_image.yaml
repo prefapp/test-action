@@ -1,35 +1,30 @@
 name: test_v4_action_state_repo_update_image
 on:
   workflow_dispatch:
-    inputs:
-      tenant:
-        description: 'Tenant'
-        required: true
-        default: ''
-      application:
-        description: 'Application'     
-        required: true
-        default: ''
-      environment:
-        description: 'Environment'     
-        required: true
-        default: ''
-      service_names:
-        description: 'Service names'     
-        required: true
-        default: ''
-      image:
-        description: 'New image'     
-        required: true
-        default: ''
-      reviewers:
-        description: 'PR Reviewers'     
-        required: false
-        default: ''
 
 env:
   repo_git_user: 'github-actions'
   repo_git_mail: 'github-actions@github.com'
+  input_json: |
+    [
+        {
+          tenant: 'tenant1',
+          app: 'release1',
+          env: 'dev',
+          service_names: [ 'proxy' ],
+          image: 'image_proxy:tag',
+          reviewers: [ 'AlbertFemenias' ]  // this parameter (and only) is optional
+        },
+        {
+          tenant: 'tenant1',
+          app: 'release1',
+          env: 'pre',
+          service_names: [ 'dns' ],
+          image: 'image_dns:tag',
+          reviewers: [ 'AlbertFemenias' ]  // this parameter (and only) is optional
+        },
+
+    ]
   
 jobs:
   build:
@@ -41,11 +36,4 @@ jobs:
         id: gh
         uses: prefapp/action-state-repo-update-image@v4
         with:
-          tenant: ${{ github.event.inputs.tenant }}
-          application: ${{ github.event.inputs.application }}
-          environment: ${{ github.event.inputs.environment }}
-          service_names: ${{ github.event.inputs.service_names }}
-          image: ${{ github.event.inputs.image }}
-          reviewers: ${{ github.event.inputs.reviewers }}
-
-      # ${{ fromJSON('{"FAVORITE_FRUIT": "APPLE", "FAVORITE_COLOR": "BLUE"}') }}
+          input_matrix: ${{ toJSON(env.input_json) }}
