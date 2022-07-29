@@ -7,7 +7,7 @@ env:
   repo_git_mail: "github-actions@github.com"
   input_json: |
     {
-      "inputs": [
+      "matrix": [
         {
           "tenant": "tenant1",
           "app": "release1",
