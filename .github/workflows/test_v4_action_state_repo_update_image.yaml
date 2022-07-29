@@ -3,28 +3,28 @@ on:
   workflow_dispatch:
 
 env:
-  repo_git_user: 'github-actions'
-  repo_git_mail: 'github-actions@github.com'
+  repo_git_user: "github-actions"
+  repo_git_mail: "github-actions@github.com"
   input_json: |
-    { inputs = 
-      [
-        {
-          'tenant': 'tenant1',
-          'app': 'release1',
-          'env': 'dev',
-          'service_names': [ 'proxy' ],
-          'image': 'image_proxy:tag',
-          'reviewers': [ 'AlbertFemenias' ]
-        },
-        {
-          'tenant': 'tenant1',
-          'app': 'release1',
-          'env': 'pre',
-          'service_names': [ 'dns' ],
-          'image': 'image_dns:tag',
-          'reviewers': [ 'AlbertFemenias' ]
-        }
-      ]
+    {
+    	"inputs": [
+		    {
+    			"tenant": "tenant1",
+    			"app": "release1",
+    			"env": "dev",
+    			"service_names": ["proxy"],
+    			"image": "image_proxy:tag",
+    			"reviewers": ["AlbertFemenias"]
+    		},
+    		{
+    			"tenant": "tenant1",
+    			"app": "release1",
+    			"env": "pre",
+    			"service_names": ["dns"],
+    			"image": "image_dns:tag",
+    			"reviewers": ["AlbertFemenias"]
+    		}
+    	]
     }
   
 jobs:
@@ -37,4 +37,4 @@ jobs:
         id: gh
         uses: prefapp/action-state-repo-update-image@v4
         with:
-          input_matrix: ${{ toJSON(env.input_json) }}
+          input_matrix: ${{ fromJSON(env.input_json) }}
