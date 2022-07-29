@@ -7,24 +7,24 @@ env:
   repo_git_mail: "github-actions@github.com"
   input_json: |
     {
-    	"inputs": [
-		    {
-    			"tenant": "tenant1",
-    			"app": "release1",
-    			"env": "dev",
-    			"service_names": ["proxy"],
-    			"image": "image_proxy:tag",
-    			"reviewers": ["AlbertFemenias"]
-    		},
-    		{
-    			"tenant": "tenant1",
-    			"app": "release1",
-    			"env": "pre",
-    			"service_names": ["dns"],
-    			"image": "image_dns:tag",
-    			"reviewers": ["AlbertFemenias"]
-    		}
-    	]
+      "inputs": [
+        {
+          "tenant": "tenant1",
+          "app": "release1",
+          "env": "dev",
+          "service_names": ["proxy"],
+          "image": "image_proxy:tag",
+          "reviewers": ["AlbertFemenias"]
+        },
+        {
+          "tenant": "tenant1",
+          "app": "release1",
+          "env": "pre",
+          "service_names": ["dns"],
+          "image": "image_dns:tag",
+          "reviewers": ["AlbertFemenias"]
+        }
+      ]
     }
   
 jobs:
