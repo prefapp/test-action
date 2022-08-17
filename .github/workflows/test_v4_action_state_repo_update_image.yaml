@@ -6,7 +6,8 @@ env:
   repo_git_user: "github-actions"
   repo_git_mail: "github-actions@github.com"
   input_json: |
-      [
+    {
+      images: [
         {
           "tenant": "tenant1",
           "app": "release1",
@@ -24,6 +25,7 @@ env:
           "reviewers": ["AlbertFemenias"]
         }
       ]
+    }
 
   
 jobs:
