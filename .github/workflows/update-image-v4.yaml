@@ -16,7 +16,7 @@ jobs:
           
       - name: echo inputs
         run: |
-          echo ${{ toJSON(github.event.client_payload) }}
+          echo "${{ toJSON(github.event.client_payload) }}"
           
       - name: Update image
         id: gh
