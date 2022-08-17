@@ -1,0 +1,8 @@
+proxy:
+  image: foo/proxy:dev
+dns:
+  image: foo/dns:bar
+frontend:
+  image: name:tag
+backend:
+  image: name:tag
