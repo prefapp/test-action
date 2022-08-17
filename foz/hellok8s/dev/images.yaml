@@ -3,6 +3,6 @@ proxy:
 dns:
   image: foo/dns:bar
 frontend:
-  image: name:tag
+  image: prefappacr.azurecr.io/apps/backend/hellok8s:0c21490_foz-flavour
 backend:
   image: name:tag
