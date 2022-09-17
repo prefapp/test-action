@@ -10,7 +10,7 @@ env:
       "images": [
         {
           "tenant": "tenant1",
-          "app": "reportApp",
+          "app": "release1",
           "env": "dev",
           "service_name": "proxy",
           "image": "image_proxy:tag",
@@ -18,7 +18,7 @@ env:
         },
         {
           "tenant": "tenant1",
-          "app": "pollingApp",
+          "app": "release1",
           "env": "pre",
           "service_name": "dns",
           "image": "image_dns:tag",
