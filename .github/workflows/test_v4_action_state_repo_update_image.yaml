@@ -38,4 +38,5 @@ jobs:
         id: gh
         uses: prefapp/action-state-repo-update-image@v4
         with:
-          input_matrix: ${{ toJSON(env.input_json) }}
+          input_matrix: ${{ env.input_json }}
+          #input_matrix: ${{ toJSON(env.input_json) }}
