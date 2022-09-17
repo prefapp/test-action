@@ -10,17 +10,17 @@ env:
       "images": [
         {
           "tenant": "tenant1",
-          "app": "release1",
+          "app": "reportApp",
           "env": "dev",
-          "service_names": ["proxy"],
+          "service_name": "proxy",
           "image": "image_proxy:tag",
           "reviewers": ["AlbertFemenias"]
         },
         {
           "tenant": "tenant1",
-          "app": "release1",
+          "app": "pollingApp",
           "env": "pre",
-          "service_names": ["dns"],
+          "service_name": "dns",
           "image": "image_dns:tag",
           "reviewers": ["AlbertFemenias"]
         }
